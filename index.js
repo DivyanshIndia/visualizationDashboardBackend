@@ -2,8 +2,10 @@ const express = require("express");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const cors = require("cors");
 const dotenv = require("dotenv");
-
+const http = require("http");
 dotenv.config();
+
+
 
 const app = express();
 app.use(
@@ -15,6 +17,7 @@ app.use(
 const port = 8080;
 
 const uri = process.env.MONGODB_URI;
+const server = new http.createServer(app);
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -66,7 +69,7 @@ client
       }
     });
 
-    app.listen(port, () => {
+    server.listen(port, () => {
       console.log(`Server running on port ${port}`);
     });
   })
