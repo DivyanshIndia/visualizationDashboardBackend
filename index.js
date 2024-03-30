@@ -6,12 +6,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
+app.use(cors());
+app.options("*", cors());
 
 const port = 8080;
 const uri = process.env.MONGODB_URI;
