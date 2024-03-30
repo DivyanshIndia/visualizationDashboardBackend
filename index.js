@@ -12,7 +12,7 @@ app.use(
     credentials: true,
   })
 );
-const port = 3000;
+const port = 8080;
 
 const uri = process.env.MONGODB_URI;
 
