@@ -19,7 +19,13 @@ const uri = process.env.MONGODB_URI;
 // Connect to MongoDB
 const connectToMongoDB = async () => {
   try {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(uri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: false,
+        deprecationErrors: true,
+      },
+    });
     await client.connect();
     const db = client.db("crpto_data");
     console.log("Connected to MongoDB");
