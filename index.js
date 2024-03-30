@@ -13,7 +13,7 @@ app.use(
   })
 );
 
-const port = process.env.PORT || 8080;
+const port = 8080;
 const uri = process.env.MONGODB_URI;
 
 // Connect to MongoDB
