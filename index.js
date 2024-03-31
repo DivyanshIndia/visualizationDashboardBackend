@@ -10,7 +10,9 @@ app.use(cors());
 app.options("*", cors());
 
 const port = 8080;
-const uri = process.env.MONGODB_URI;
+const uri =
+ 
+  "mongodb+srv://lusizhao9:TrsQLkx6n1yPlwfD@stocksdata.wbsw5ht.mongodb.net/?retryWrites=true&w=majority&appName=stocksData";
 
 // Connect to MongoDB
 const connectToMongoDB = async () => {
