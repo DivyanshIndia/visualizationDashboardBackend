@@ -6,17 +6,22 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
-app.use(cors());
-app.options("*", cors());
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 
 const port = 8080;
 const uri =
   "mongodb+srv://lusizhao9:TrsQLkx6n1yPlwfD@stocksdata.wbsw5ht.mongodb.net/?retryWrites=true&w=majority&appName=stocksData";
 
 // Connect to MongoDB
+let client;
 const connectToMongoDB = async () => {
   try {
-    const client = new MongoClient(uri, {
+    client = new MongoClient(uri, {
       serverApi: {
         version: ServerApiVersion.v1,
         strict: true,
@@ -88,9 +93,10 @@ const startServer = async () => {
 startServer();
 
 // Handle MongoDB disconnection on app termination
-process.on("SIGINT", () => {
-  client.close().then(() => {
+process.on("SIGINT", async () => {
+  if (client) {
+    await client.close();
     console.log("MongoDB disconnected on app termination");
+  }
     process.exit(0);
-  });
 });
