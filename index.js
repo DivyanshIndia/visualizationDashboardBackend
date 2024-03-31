@@ -14,8 +14,7 @@ app.use(
 );
 
 const port = 8080;
-const uri =
-  "mongodb+srv://lusizhao9:TrsQLkx6n1yPlwfD@stocksdata.wbsw5ht.mongodb.net/?retryWrites=true&w=majority&appName=stocksData";
+const uri = process.env.MONGODB_URI 
 
 // Connect to MongoDB
 let client;
@@ -98,5 +97,5 @@ process.on("SIGINT", async () => {
     await client.close();
     console.log("MongoDB disconnected on app termination");
   }
-    process.exit(0);
+  process.exit(0);
 });
