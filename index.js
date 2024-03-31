@@ -9,12 +9,13 @@ const app = express();
 app.use(
   cors({
     origin: "*",
-    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+   
   })
 );
 
-const port = 8080;
-const uri = process.env.MONGODB_URI 
+const port = process.env.PORT || 8080;
+const uri = process.env.MONGODB_URI;
 
 // Connect to MongoDB
 let client;
